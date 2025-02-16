@@ -5,6 +5,9 @@
 name: 'taxi_rides_ny'
 version: '1.0.0'
 
+dbt-cloud:
+    project-id: 70471823432039
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'taxi_rides_ny'
 
