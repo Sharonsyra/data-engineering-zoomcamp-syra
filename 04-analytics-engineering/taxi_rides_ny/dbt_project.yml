@@ -8,7 +8,7 @@ dbt-cloud:
   project-id: 70471823432039
 
 # This setting configures which "profile" dbt uses for this project.
-profile: "taxi_rides_ny"
+profile: "dbt-zoomcamp-postgres"
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -33,5 +33,7 @@ clean-targets: # directories to be removed by `dbt clean`
 models:
   taxi_rides_ny:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
       +materialized: view
+    core:
+      +materialized: table
