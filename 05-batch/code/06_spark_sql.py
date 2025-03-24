@@ -3,10 +3,8 @@
 
 import argparse
 
-import pyspark
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
-
 
 parser = argparse.ArgumentParser()
 
@@ -20,7 +18,6 @@ input_green = args.input_green
 input_yellow = args.input_yellow
 output = args.output
 
-
 spark = SparkSession.builder \
     .appName('test') \
     .getOrCreate()
@@ -33,11 +30,9 @@ df_green = df_green \
 
 df_yellow = spark.read.parquet(input_yellow)
 
-
 df_yellow = df_yellow \
     .withColumnRenamed('tpep_pickup_datetime', 'pickup_datetime') \
     .withColumnRenamed('tpep_dropoff_datetime', 'dropoff_datetime')
-
 
 common_colums = [
     'VendorID',
@@ -60,8 +55,6 @@ common_colums = [
     'congestion_surcharge'
 ]
 
-
-
 df_green_sel = df_green \
     .select(common_colums) \
     .withColumn('service_type', F.lit('green'))
@@ -70,11 +63,9 @@ df_yellow_sel = df_yellow \
     .select(common_colums) \
     .withColumn('service_type', F.lit('yellow'))
 
-
 df_trips_data = df_green_sel.unionAll(df_yellow_sel)
 
 df_trips_data.registerTempTable('trips_data')
-
 
 df_result = spark.sql("""
 SELECT 
@@ -102,10 +93,5 @@ GROUP BY
     1, 2, 3
 """)
 
-
 df_result.coalesce(1) \
     .write.parquet(output, mode='overwrite')
-
-
-
-

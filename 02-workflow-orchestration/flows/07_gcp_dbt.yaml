@@ -33,7 +33,7 @@ tasks:
       sa.json: "{{kv('GCP_CREDS')}}"
     commands:
       - dbt deps
-      - "{{ inputs.dbt_command }}"
+      - "{{ inputs.dbt_command }}"plO1yT*izayp!OY@
     storeManifest:
       key: manifest.json
       namespace: "{{ flow.namespace }}"

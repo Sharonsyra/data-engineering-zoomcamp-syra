@@ -14,3 +14,7 @@
 serving_dir
 .ipynb_checkpoints/
 !week_6_stream_processing/avro_example/data/rides.csv
+05-batch/code/data/*
+05-batch/notebooks/yellow/*
+05-batch/notebooks/tmp/*
+05-batch/notebooks/fhvhv_tripdata/*
